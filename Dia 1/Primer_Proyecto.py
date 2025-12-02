@@ -1,0 +1,5 @@
+#print("Hello word")
+#print ("\tHola"+'\n\"Fredy\"')
+#input("dime tu nombre:")
+#input("dime tu apellido")
+print("hola "+input("dime tu nombre:"))
