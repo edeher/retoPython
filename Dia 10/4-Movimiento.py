@@ -14,7 +14,7 @@ pygame.display.set_icon(icono)
 # Jugador
 img_jugador = pygame.image.load("astronave.png")
 jugador_x = 370
-jugador_y = 500
+jugador_y = 530
 
 
 def jugador(x, y):
@@ -24,9 +24,13 @@ def jugador(x, y):
 # Loop del Juego
 se_ejecuta = True
 while se_ejecuta:
+    # RGB
+    pantalla.fill((205, 144, 228))
+    jugador_x += 0.1  # No hay movimiento aún
+    jugador_y += 0.1  # No hay movimiento aún
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             se_ejecuta = False
-    pantalla.fill((205, 144, 228))
+
     jugador(jugador_x, jugador_y)
     pygame.display.update()
