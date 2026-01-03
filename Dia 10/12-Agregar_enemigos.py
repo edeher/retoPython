@@ -152,7 +152,7 @@ while se_ejecuta:
             # Velocidad negativa
             enemigo_x_cambio[e] = -0.1
             enemigo_y[e] += enemigo_y_cambio[e]
-    # Detectar colision
+    # DETECTAR COLISION
         colision = hay_colision(enemigo_x[e], enemigo_y[e], bala_x, bala_y)
         if colision:
             bala_y = 500
