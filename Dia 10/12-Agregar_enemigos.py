@@ -96,10 +96,12 @@ while se_ejecuta:
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_LEFT or evento.key == pygame.K_a:
                 print("Izquierda")
-                jugador_x_cambio = -1
+                # Velocidad a la Izquierda
+                jugador_x_cambio = -0.5
             if evento.key == pygame.K_RIGHT or evento.key == pygame.K_d:
                 print("Derecha")
-                jugador_x_cambio = 1
+                # Velocidad a la Derecha
+                jugador_x_cambio = 0.5
             if evento.key == pygame.K_UP or evento.key == pygame.K_w:
                 print("Arriba")
                 jugador_y_cambio = -1
@@ -143,10 +145,12 @@ while se_ejecuta:
         enemigo_x[e] += enemigo_x_cambio[e]
     # Mantener dentro de los limites horizontales
         if enemigo_x[e] <= 0:
-            enemigo_x_cambio[e] = 1
+            # Velocidad positiva
+            enemigo_x_cambio[e] = 0.1
             enemigo_y[e] += enemigo_y_cambio[e]
         elif enemigo_x[e] >= 736:
-            enemigo_x_cambio[e] = -1
+            # Velocidad negativa
+            enemigo_x_cambio[e] = -0.1
             enemigo_y[e] += enemigo_y_cambio[e]
     # Detectar colision
         colision = hay_colision(enemigo_x[e], enemigo_y[e], bala_x, bala_y)
