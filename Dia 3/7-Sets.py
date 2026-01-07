@@ -1,8 +1,7 @@
-# colección de elementos únicos y no ordenados.
-# la duplicidad no es permitida
-# el orden no importa,
-# siendo útil para operaciones matemáticas de conjuntos como la unión, intersección y diferencia.
-# Los elementos son inmutables
+# Colección de elementos únicos y no ordenados. La duplicidad no está
+# permitida y el orden no importa. Son útiles para operaciones de conjuntos
+# como la unión, intersección y diferencia. Los elementos deben ser
+# inmutables.
 # aunque el conjunto en sí es mutable y puede ser modificado.
 # de definen set([]) , set(()) y {}
 

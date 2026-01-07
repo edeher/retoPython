@@ -3,7 +3,8 @@
 # cadena[:fin]: Obtiene caracteres desde el principio de la cadena hasta uno antes de fin.
 # cadena[inicio:]: Obtiene caracteres desde inicio hasta el final de la cadena.
 # cadena[:]: Crea una copia de la cadena completa.
-# cadena[5:10:2] # obtenir caracteres desde el índice 5 hasta el 10 (excluido), cada 2 caracteres
+# cadena[5:10:2] # obtiene caracteres desde el índice 5 hasta el 10
+# (excluido), tomando cada 2 caracteres
 mi_variable = "esta palabra sera extraida"
 palabra = "palabra"
 resultado = mi_variable[5:12]

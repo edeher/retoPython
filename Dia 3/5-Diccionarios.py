@@ -1,7 +1,9 @@
-# colecciones mutables que almacenan pares de clave-valor, donde cada clave es única y se usa para acceder a su valor asociado.
-# Se definen con llaves {} y los pares se separan por dos puntos :, mientras que los elementos se separan por comas ,.
-# Las claves deben ser inmutables (como cadenas o números), pero los valores pueden ser de cualquier tipo de dato.
-# pueden contener listas
+# Colecciones mutables que almacenan pares clave-valor. Cada clave es única
+# y se usa para acceder a su valor asociado.
+# Se definen con llaves `{}`; los pares se separan por dos puntos y los
+# elementos por comas.
+# Las claves deben ser inmutables (p. ej., cadenas o números); los valores
+# pueden ser de cualquier tipo. Pueden contener listas.
 
 mi_dic = {"c1": "valor1", "c2": "valor2", "c3": "valor3"}
 print(type(mi_dic))

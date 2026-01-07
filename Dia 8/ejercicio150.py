@@ -1,5 +1,6 @@
 """
-Crea un generador que reste una a una las vidas de un personaje de videojuego, y devuelva un mensaje cada vez que sea llamado:
+Crea un generador que reste una a una las vidas de un personaje de
+videojuego y devuelva un mensaje cada vez que sea llamado:
 
 "Te quedan 3 vidas"
 
@@ -9,7 +10,7 @@ Crea un generador que reste una a una las vidas de un personaje de videojuego, y
 
 "Game Over"
 
-Almacena el generador en la variable perder_vida
+Almacena el generador en la variable `perder_vida`.
 
 """
 

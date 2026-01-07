@@ -1,4 +1,5 @@
-# devuelve la posiscion de un elemento, segun la posicion de inciio de busqueda, en un string
+# Devuelve la posición de un elemento según el índice de inicio de la
+# búsqueda dentro de un string.
 
 mi_texto = "Esta es una prueba"
 resultado = mi_texto[-4]

@@ -1,6 +1,6 @@
-# colección ordenada e inmutable de elementos, lo que significa que una vez creada no se puede modificar su contenido.
-# Se definen con paréntesis ().
-# comienza con indice [0]
+# Colección ordenada e inmutable de elementos. Una vez creada no se
+# puede modificar su contenido. Se definen con paréntesis `()` y el
+# índice comienza en 0.
 mi_tuple = (1, 2, 3, 4)
 mi_tuple2 = (5, 5.6, "a")
 mituple3 = (1, 2, (10, 20), 4)

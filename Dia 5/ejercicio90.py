@@ -1,11 +1,12 @@
-"""Verifica si los sets a continuación forman conjuntos aislados (es decir, que no tienen elementos en común), utilizando el método isdisjoint(). Almacena dicho resultado en la variable conjuntos_aislados:
+"""Verifica si los sets a continuación forman conjuntos aislados (es decir,
+que no tienen elementos en común) utilizando el método `isdisjoint()`.
+Almacena el resultado en la variable `conjuntos_aislados`.
 
 marcas_smartphones = {"Samsung", "Xiaomi", "Apple", "Huawei", "LG"}
 marcas_tv = {"Sony", "Philips", "Samsung", "LG"}
-Busca en la documentación acerca del funcionamiento del método solicitado para saber cómo actúa y cómo es su funcionamiento.
 
+Consulta la documentación del método para entender su funcionamiento.
 """
-
 marcas_smartphones = {"Samsung", "Xiaomi", "Apple", "Huawei", "LG"}
 
 marcas_tv = {"Sony", "Philips", "Samsung", "LG"}
