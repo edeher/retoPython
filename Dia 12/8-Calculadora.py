@@ -1,6 +1,7 @@
 from tkinter import (
     Checkbutton,
     Entry,
+    Text,
     Tk,
     Frame,
     TOP,
@@ -11,12 +12,13 @@ from tkinter import (
     LEFT,
     RIGHT,
     IntVar,
+    Button
 )
 # iniciar tkinter
 aplicacion = Tk()
 
 # tamaño de la ventana
-aplicacion.geometry("1020x630+0+0")
+aplicacion.geometry("1110x630+0+0")
 
 # evitar maximar
 aplicacion.resizable(0, 0)
@@ -36,7 +38,7 @@ etiqueta_titulo = Label(
     panel_superior,
     text="Sistema de Facturación",
     fg="azure4",
-    font=("Dosis", 48),
+    font=("Dosis", 58),
     bg="burlywood",
     width=27,
 )
@@ -47,7 +49,7 @@ panel_izquierdo = Frame(aplicacion, bd=1, relief=FLAT)
 panel_izquierdo.pack(side="left")
 
 # panel costos
-panel_costos = Frame(panel_izquierdo, bd=1, relief=FLAT)
+panel_costos = Frame(panel_izquierdo, bd=1, relief=FLAT, bg="azure4", padx=50)
 panel_costos.pack(side=BOTTOM)
 
 # panel comidas
@@ -165,7 +167,7 @@ for comida in lista_comidas:
     comida = Checkbutton(
         panel_comidas,
         text=comida.title(),
-        font=("Dosis", 16, "bold"),
+        font=("Dosis", 19, "bold"),
         onvalue=1,
         offvalue=0,
         variable=variables_comida[contador],
@@ -199,7 +201,7 @@ for bebida in lista_bebidas:
     bebida = Checkbutton(
         panel_bebidas,
         text=bebida.title(),
-        font=("Dosis", 16, "bold"),
+        font=("Dosis", 19, "bold"),
         onvalue=1,
         offvalue=0,
         variable=variables_bebida[contador],
@@ -233,7 +235,7 @@ for postre in lista_postres:
     postre = Checkbutton(
         panel_postres,
         text=postre.title(),
-        font=("Dosis", 16, "bold"),
+        font=("Dosis", 19, "bold"),
         onvalue=1,
         offvalue=0,
         variable=variables_postre[contador],
@@ -255,6 +257,192 @@ for postre in lista_postres:
     )
     cuadros_postre[contador].grid(row=contador, column=1)
     contador += 1
+
+# variables
+var_costo_comida = IntVar()
+var_costo_bebida = IntVar()
+var_costo_postre = IntVar()
+var_subtotal = IntVar()
+var_impuestos = IntVar()
+var_total = IntVar()
+
+# Etiquetas de costo y campos de entradas
+etiqueta_costo_comida = Label(
+    panel_costos,
+    text="Costo Comida",
+    font=("Dosis", 12, "bold"),
+    bg="azure4",
+    fg="white",
+)
+
+etiqueta_costo_comida.grid(row=0, column=0)
+
+texto_costo_comida = Entry(
+    panel_costos,
+    font=("Dosis", 12, "bold"),
+    bd=1,
+    width=10,
+    state="readonly",
+    textvariable=var_costo_comida
+)
+texto_costo_comida.grid(row=0, column=1, padx=41)
+
+etiqueta_costo_bebida = Label(
+    panel_costos,
+    text="Costo Bebida",
+    font=("Dosis", 12, "bold"),
+    bg="azure4",
+    fg="white",
+)
+etiqueta_costo_bebida.grid(row=1, column=0)
+texto_costo_bebida = Entry(
+    panel_costos,
+    font=("Dosis", 12, "bold"),
+    bd=1,
+    width=10,
+    state="readonly",
+    textvariable=var_costo_bebida
+)
+texto_costo_bebida.grid(row=1, column=1, padx=41)
+
+etiqueta_costo_postre = Label(
+    panel_costos,
+    text="Costo Postre",
+    font=("Dosis", 12, "bold"),
+    bg="azure4",
+    fg="white",
+)
+etiqueta_costo_postre.grid(row=2, column=0)
+texto_costo_postre = Entry(
+    panel_costos,
+    font=("Dosis", 12, "bold"),
+    bd=1,
+    width=10,
+    state="readonly",
+    textvariable=var_costo_postre
+)
+texto_costo_postre.grid(row=2, column=1, padx=41)
+
+
+etiqueta_subtotal = Label(
+    panel_costos,
+    text="Subtotal",
+    font=("Dosis", 12, "bold"),
+    bg="azure4",
+    fg="white",
+)
+etiqueta_subtotal.grid(row=0, column=2)
+texto_subtotal = Entry(
+    panel_costos,
+    font=("Dosis", 12, "bold"),
+    bd=1,
+    width=10,
+    state="readonly",
+    textvariable=var_subtotal
+)
+texto_subtotal.grid(row=0, column=3, padx=41)
+
+etiqueta_impuestos = Label(
+    panel_costos,
+    text="Impuestos",
+    font=("Dosis", 12, "bold"),
+    bg="azure4",
+    fg="white",
+)
+etiqueta_impuestos.grid(row=1, column=2)
+texto_impuestos = Entry(
+    panel_costos,
+    font=("Dosis", 12, "bold"),
+    bd=1,
+    width=10,
+    state="readonly",
+    textvariable=var_impuestos
+)
+texto_impuestos.grid(row=1, column=3, padx=41)
+
+
+etiqueta_total = Label(
+    panel_costos,
+    text="Total",
+    font=("Dosis", 12, "bold"),
+    bg="azure4",
+    fg="white",
+)
+etiqueta_total.grid(row=2, column=2)
+texto_total = Entry(
+    panel_costos,
+    font=("Dosis", 12, "bold"),
+    bd=1,
+    width=10,
+    state="readonly",
+    textvariable=var_total
+)
+texto_total.grid(row=2, column=3, padx=41)
+
+# botones
+botones = ['total', 'recibo', 'guardar', 'resetear']
+botones_creados = []
+columnas = 0
+for boton in botones:
+    boton = Button(
+        panel_botones,
+        text=boton.title(),
+        font=("Dosis", 14, "bold"),
+        fg="white",
+        bg="azure4",
+        bd=1,
+        width=9,
+    )
+    boton.grid(row=0, column=columnas)
+    columnas += 1
+
+# area de recibo
+text_recibo = Text(
+    panel_recibo,
+    font=("Dosis", 12, "bold"),
+    bd=1,
+    width=42,
+    height=10,
+)
+text_recibo.grid(row=0, column=0)
+
+# calculadora
+visor_calculadora = Entry(
+    panel_calculadora,
+    font=("Dosis", 16, "bold"),
+    bd=1,
+    width=32,
+)
+visor_calculadora.grid(row=0, column=0, columnspan=4)
+
+# botones de la calculadora
+botones_calculadora = [
+    '7', '8', '9', '+',
+    '4', '5', '6', '-',
+    '1', '2', '3', 'x',
+    'R', 'B', '0', '/',
+]
+fila = 1
+columna = 0
+for boton in botones_calculadora:
+    boton = Button(
+        panel_calculadora,
+        text=boton.title(),
+        font=("Dosis", 16, "bold"),
+        fg="white",
+        bg="azure4",
+        bd=1,
+        width=8,
+    )
+    boton.grid(row=fila, column=columna)
+
+    if columna == 3:
+        fila += 1
+
+    columna += 1
+
+    if columna == 4:
+        columna = 0
 
 
 # evitar que se cierre la pantalla
