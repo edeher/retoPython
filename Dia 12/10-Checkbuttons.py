@@ -41,6 +41,41 @@ def obtener_resultado():
     operador = ''
 
 
+def revisar_check():
+    x = 0
+    for c in cuadros_comida:
+        if variables_comida[x].get() == 1:
+            cuadros_comida[x].config(state="normal")
+            cuadros_comida[x].delete(0, 'end')
+            cuadros_comida[x].focus()
+        else:
+            cuadros_comida[x].config(state="disabled")
+            textos_comida[x].set('0')
+        x += 1
+
+    x = 0
+    for c in cuadros_bebida:
+        if variables_bebida[x].get() == 1:
+            cuadros_bebida[x].config(state="normal")
+            cuadros_bebida[x].delete(0, 'end')
+            cuadros_bebida[x].focus()
+        else:
+            cuadros_bebida[x].config(state="disabled")
+            textos_bebida[x].set('0')
+        x += 1
+
+    x = 0
+    for c in cuadros_postre:
+        if variables_postre[x].get() == 1:
+            cuadros_postre[x].config(state="normal")
+            cuadros_postre[x].delete(0, 'end')
+            cuadros_postre[x].focus()
+        else:
+            cuadros_postre[x].config(state="disabled")
+            textos_postre[x].set('0')
+        x += 1
+
+
 # iniciar tkinter
 aplicacion = Tk()
 
@@ -198,6 +233,7 @@ for comida in lista_comidas:
         onvalue=1,
         offvalue=0,
         variable=variables_comida[contador],
+        command=revisar_check
     )
     comida.grid(row=contador, column=0, sticky='w')
 
@@ -232,6 +268,7 @@ for bebida in lista_bebidas:
         onvalue=1,
         offvalue=0,
         variable=variables_bebida[contador],
+        command=revisar_check
     )
     bebida.grid(row=contador, column=0, sticky='w')
 
@@ -266,6 +303,7 @@ for postre in lista_postres:
         onvalue=1,
         offvalue=0,
         variable=variables_postre[contador],
+        command=revisar_check
     )
     postre.grid(row=contador, column=0, sticky='w')
 
