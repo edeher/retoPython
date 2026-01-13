@@ -12,8 +12,11 @@ from tkinter import (
     LEFT,
     RIGHT,
     IntVar,
-    Button
+    Button,
+    END,
 )
+import random
+import datetime
 
 # operador
 
@@ -116,6 +119,39 @@ def total():
     var_subtotal.set(f"${sub_total:.2f}")
     var_impuestos.set(f"${impuestos:.2f}")
     var_total.set(f"${total:.2f}")
+
+
+def recibo():
+    texto_recibo.delete(1.0, 'end')
+    num_recibo = f"N# - {random.randint(1000, 9999)}"
+    fecha = datetime.datetime.now()
+    fecha_recibo = fecha.strftime("%d/%m/%Y - %H:%M:%S")
+    texto_recibo.insert(END, f"Recibo:\t{num_recibo}\t\t{fecha_recibo}\n")
+    texto_recibo.insert(END, "*" * 54 + "\n")
+    texto_recibo.insert('end', "Items\t\tCant.\tCosto Items\n")
+    texto_recibo.insert('end', "-" * 54 + "\n")
+
+    X = 0
+    for comida in lista_comidas:
+        if textos_comida[X].get() != '0':
+            texto_recibo.insert('end',
+                                f"{comida}\t\t{textos_comida[X].get()}\t"
+                                f"${float(textos_comida[X].get()) * precios_comida[X]:.2f}\n")
+        X += 1
+    X = 0
+    for bebida in lista_bebidas:
+        if textos_bebida[X].get() != '0':
+            texto_recibo.insert('end',
+                                f"{bebida}\t\t{textos_bebida[X].get()}\t"
+                                       f"${float(textos_bebida[X].get()) * precios_bebida[X]:.2f}\n")
+        X += 1
+    X = 0
+    for postre in lista_postres:
+        if textos_postre[X].get() != '0':
+            texto_recibo.insert('end',
+                                f"{postre}\t\t{textos_postre[X].get()}\t"
+                                       f"${float(textos_postre[X].get()) * precios_postres[X]:.2f}\n")
+        X += 1
 
 
 # iniciar tkinter
@@ -504,16 +540,17 @@ for boton in botones:
     boton.grid(row=0, column=columnas)
     columnas += 1
 botones_creados[0].config(command=total)
+botones_creados[1].config(command=recibo)
 
 # area de recibo
-text_recibo = Text(
+texto_recibo = Text(
     panel_recibo,
     font=("Dosis", 12, "bold"),
     bd=1,
     width=42,
     height=10,
 )
-text_recibo.grid(row=0, column=0)
+texto_recibo.grid(row=0, column=0)
 
 # calculadora
 visor_calculadora = Entry(

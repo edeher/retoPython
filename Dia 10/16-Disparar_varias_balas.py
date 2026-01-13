@@ -181,7 +181,7 @@ while se_ejecuta:
             enemigo_y[e] += enemigo_y_cambio[e]
     # DETECTAR COLISION
         for bala in balas:
-            colision_bala_enemigo = hay_colision(enemigo_x[e], enemigo_y[e], 
+            colision_bala_enemigo = hay_colision(enemigo_x[e], enemigo_y[e],
                                                  bala["x"], bala["y"])
             if colision_bala_enemigo:
                 sonido_colision = mixer.Sound("Golpe.mp3")
