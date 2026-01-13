@@ -14,8 +14,9 @@ from tkinter import (
     RIGHT,
     IntVar,
     Button,
-    END,
+    END
 )
+from tkinter import filedialog, messagebox
 import random
 import datetime
 
@@ -171,6 +172,14 @@ def recibo():
     texto_recibo.insert(END, f"Total:\t\t{var_total.get()}\n")
     texto_recibo.insert(END, "*" * 54 + "\n")
     texto_recibo.insert(END, "Gracias por su preferencia")
+
+
+def guardar():
+    info_recibo = texto_recibo.get(1.0, END)
+    archivo = filedialog.asksaveasfile(mode='w', defaultextension='.txt')
+    archivo.write(info_recibo)
+    archivo.close()
+    messagebox.showinfo("Información", "Su recibo ha sido guardado")
 
 
 # iniciar tkinter
@@ -560,6 +569,7 @@ for boton in botones:
     columnas += 1
 botones_creados[0].config(command=total)
 botones_creados[1].config(command=recibo)
+botones_creados[2].config(command=guardar)
 
 # area de recibo
 texto_recibo = Text(
