@@ -39,7 +39,7 @@ def transformar_audio_a_texto():
             print("sorry, no entendi")
             return "sorry , sigo esperando"
         # error inesperado
-        except:
+        except :
             print("sorry, algo salio mal")
             return "sigo esperando"
 

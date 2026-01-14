@@ -1,0 +1,116 @@
+import pyttsx3
+import speech_recognition as sr
+import pywhatkit
+import yfinance as yf
+import pyjokes
+import webbrowser
+import datetime
+import wikipedia
+
+
+# opciones de voz / idioma
+id1 = (r'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices'
+       r'\Tokens\TTS_MS_ES-MX_SABINA_11.0')
+id2 = (r'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices'
+       r'\Tokens\TTS_MS_EN-US_ZIRA_11.0')
+id3 = (r'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices'
+       r'\Tokens\TTS_MS_EN-US_DAVID_11.0')
+# ...existing code...
+
+
+# escuchar nuestro microfono y devolver el audio como texto
+def transformar_audio_a_texto():
+    # almacenamos el recognizer en una variable
+    r = sr.Recognizer()
+    # configuramos el microfono
+    with sr.Microphone() as origen:
+        # tiempo de espera para escuchar el audio
+        r.pause_threshold = 0.8
+        # informamos que comenzo a grabar
+        print("Ya puedes hablar")
+        # guardamos lo que escucha el audio
+        audio = r.listen(origen)
+
+        try:
+            # buscar en google
+            pedido = r.recognize_google(audio, language="es-ES")
+            # prueba de que pudo ingresar
+            print("Dijiste: " + pedido)
+            # devolver el pedido
+            return pedido
+        # en caso no comprenda el audio
+        except sr.UnknownValueError:
+            # prueba de que no comprendio el audio
+            print("Lo siento, no hay servicio")
+            # devolver el error
+            return "sorry, no te he entendido"
+        # en caso de no resolver el pedido
+        except sr.RequestError:
+            print("sorry, no entendi")
+            return "sorry , sigo esperando"
+        # error inesperado
+        except:
+            print("sorry, algo salio mal")
+            return "sigo esperando"
+
+
+# funcion para que el asistente pueda ser escuchado
+def hablar(mensaje):
+    # encender el motor de pyttsx3
+    engine = pyttsx3.init()
+    engine.setProperty('voice', id1)
+    # pronunciar mensaje
+    engine.say(mensaje)
+    engine.runAndWait()
+
+
+# informar el dia de la semana
+def pedir_dia():
+    dia = datetime.date.today()
+    print(dia)
+
+    # crear variable para el dia de la semana
+    dia_semana = dia.weekday()
+    print(dia_semana)
+
+    # diccionario
+    calendario = {0: 'Lunes',
+                  1: 'Martes',
+                  2: 'Miercoles',
+                  3: 'Jueves',
+                  4: 'Viernes',
+                  5: 'Sabado',
+                  6: 'Domingo'}
+    # decir el dia de la semana
+    hablar(f'hoy es {calendario[dia_semana]}')
+
+
+# informar que hora es
+def pedir_hora():
+
+    # crear variable con datos de la hora
+    hora = datetime.datetime.now()
+    hora = f'son las {hora.hour} horas y {hora.minute} con {hora.second} segun'
+    print(hora)
+    # decir la hora
+    hablar(hora)
+
+
+# funcion saludo inicial
+def saludo_inicial():
+    # crear variable con datos de hora 
+    hora = datetime.datetime.now()
+    if hora.hour < 6 or hora.hour > 20:
+        momento = 'buenas noches'
+    elif 6 <= hora.hour < 13:
+        momento = 'buen día'
+    else:
+        momento = 'buenas tardes'
+    # decir saludo
+    hablar(f'''
+           hola {momento}, soy tu asistente personal.
+           por favor dime en que te puedo ayudar?
+           ''')
+
+
+saludo_inicial()
