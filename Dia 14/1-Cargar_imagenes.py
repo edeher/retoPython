@@ -1,4 +1,4 @@
-from cv2 import cv2
+import cv2
 import face_recognition as fr
 
 
@@ -15,4 +15,4 @@ cv2.imshow('Foto Control', foto_control)
 cv2.imshow('Foto Prueba', foto_prueba)
 
 # mantener porograma abierto
-cv2.waitkey(0)
+cv2.waitKey(0)
