@@ -4,9 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pyttsx3 = "*"
+speech_recognition = "*"
+pywhatkit = "*"
+yfinance = "*"
+pyjokes = "*"
+wikipedia = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.14"
-python_full_version = "3.14.0"
+python_version = "3.13"
+python_full_version = "3.13.11"
