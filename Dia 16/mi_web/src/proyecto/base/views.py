@@ -1,6 +1,7 @@
-from django.http import HttpResponse
+
+from django.views.generic.list import ListView
+from .models import Tarea
 
 
-# Create your views here.
-def lista_pendientes(peido):
-    return HttpResponse("lista de pendientes.")
+class ListaPendientes(ListView):
+    model = Tarea
